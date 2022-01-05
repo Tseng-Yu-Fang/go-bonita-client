@@ -17,7 +17,6 @@ type BPMClient struct {
 }
 
 func init() {
-	// const server_addr = "http://54.169.182.165:8080" + "/bonita/"
 	const server_addr = "http://1.2.3.4:8080" + "/bonita/"
 	// sources := fmt.Sprintf(server_addr,
 	// 	// os.Getenv("BPM_SERVER_ADDR"),
