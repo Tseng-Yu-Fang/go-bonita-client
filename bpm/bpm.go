@@ -1,6 +1,7 @@
 package bpm
 
 import (
+	"fmt"
 	"github.com/go-resty/resty/v2"
 	"log"
 )
@@ -37,14 +38,17 @@ func (b *BPMClient) Login(username string) {
 	url := b.server + "loginservice"
 
 	resp, err := b.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetBody(`{"username":"` + username + `", "password":"123456"}`).
+		SetFormData(map[string]string{
+			"username": username,
+			"password": "12345",
+		}).
 		Post(url)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	b.token = resp.Header().Get("X-Bonita-API-Token")
+	fmt.Println(resp.Header())
+
 }
 
 // Start-Form
