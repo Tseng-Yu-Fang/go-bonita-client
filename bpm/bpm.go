@@ -1,9 +1,8 @@
 package bpm
 
 import (
-	"log"
-
 	"github.com/go-resty/resty/v2"
+	"log"
 )
 
 var bc *BPMClient
