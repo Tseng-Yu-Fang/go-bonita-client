@@ -17,7 +17,7 @@ type BPMClient struct {
 }
 
 func init() {
-	const server_addr = "http://1.2.3.4:8080" + "/bonita/"
+	const server_addr = "http://54.169.182.165:8080" + "/bonita/"
 	// sources := fmt.Sprintf(server_addr,
 	// 	// os.Getenv("BPM_SERVER_ADDR"),
 	// 	os.Getenv("b.server"),
@@ -33,21 +33,30 @@ func init() {
 
 // Login
 // /bonita/loginservice
-func (b *BPMClient) Login(username string) {
+func (b *BPMClient) Login(username string, password string) string{
 
 	url := b.server + "loginservice"
-
+	APIToken := ""
 	resp, err := b.client.R().
 		SetFormData(map[string]string{
 			"username": username,
-			"password": "12345",
+			"password": password,
 		}).
 		Post(url)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(resp.Header())
+	for _, cookie := range resp.Cookies() {
+		if cookie.Name == "X-Bonita-API-Token" {
+			APIToken = cookie.Value
+		}
+	}
+
+	
+
+	fmt.Println(APIToken)
+	return APIToken
 
 }
 
