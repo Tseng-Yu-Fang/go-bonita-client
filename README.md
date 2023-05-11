@@ -1,4 +1,4 @@
-# 專案管理系統Bonita Middleware V1.0
+# 專案管理系統Bonita Middleware v1.0
 ## 摘要
 為了讓專案管理系統能與Bonita串接而獨立出來的微服務。
 ## 說明
